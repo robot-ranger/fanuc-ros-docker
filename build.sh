@@ -4,6 +4,8 @@ cd /fanuc-ws
 echo "Installing dependencies"
 rosdep update
 pwd
+ls -la src
+ls -la src/fanuc_driver
 rosdep install --ignore-src --from-paths src -y
 
 echo "Building FANUC libraries"
