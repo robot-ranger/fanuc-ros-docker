@@ -1,7 +1,6 @@
 FROM ros:humble
 
-COPY ./ /fanuc-ws
-RUN ls -la /fanuc-ws/src
+COPY ./build.sh /fanuc-ws/build.sh
 RUN apt update \
     && chmod +x /fanuc-ws/build.sh \
     && /fanuc-ws/build.sh
