@@ -1,4 +1,17 @@
 #!/bin/bash
+echo "Installing and configuring git-lfs"
+apt install git-lfs
+git lfs install
+
+echo "Creating workspace"
+mkdir -p /fanuc-ws/src
+cd /fanuc-ws/src
+git clone https://github.com/FANUC-CORPORATION/fanuc_description
+git clone --recurse-submodules https://github.com/FANUC-CORPORATION/fanuc_driver
+cd /fanuc-ws
+echo "Installing dependencies"
+rosdep update
+rosdep install --ignore-src --from-paths src -y
 
 echo "Building FANUC libraries"
 # Source ROS setup before building
