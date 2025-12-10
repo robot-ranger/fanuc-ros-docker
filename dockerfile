@@ -1,7 +1,8 @@
 FROM ros:humble
 
 COPY ./build.sh /fanuc-ws/build.sh
-RUN apt update \
+RUN chmod u+x /fanuc-ws/build.sh \
+    && apt update \
     && apt install git-lfs -y \
     && git lfs install
 
@@ -14,7 +15,4 @@ RUN cd /fanuc-ws \
     && rosdep update \
     && rosdep install --from-paths src --ignore-src -r -y
 
-RUN /bin/bash -c "source /opt/ros/humble/setup.bash \
-    && colcon build --symlink-install --cmake-args -DBUILD_TESTING=1 -DBUILD_EXAMPLES=1 \
-    && echo \"source /opt/ros/\$ROS_DISTRO/setup.bash\" >> ~/.bashrc \
-    && echo \"source /fanuc-ws/install/setup.bash\" >> ~/.bashrc"
+RUN /fanuc-ws/build.sh
