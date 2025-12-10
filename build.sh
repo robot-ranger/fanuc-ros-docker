@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Installing and configuring git-lfs"
-sudo apt install git-lfs
+apt install git-lfs
 git lfs install
 
 echo "Creating workspace"
